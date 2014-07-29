@@ -1,4 +1,7 @@
 def add_newline_segment():
-    powerline.append('\n', 0, 0)
+    fg = Color.NEWLINE_FG
+    bg = Color.NEWLINE_BG
+
+    powerline.append('\n', fg, bg)
 
 add_newline_segment()

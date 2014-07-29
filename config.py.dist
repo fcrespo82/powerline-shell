@@ -22,9 +22,6 @@ SEGMENTS = [
 # Show a padlock when ssh-ing from another machine
     'ssh',
 
-# Line break
-    'newline',
-
 # Show the current directory. If the path is too long, the middle part is
 # replaced with ellipsis ('...')
     'cwd',
@@ -49,11 +46,13 @@ SEGMENTS = [
     'jobs',
 
 # Line break
-    'newline',
+    #'newline',
 
 # Shows a '#' if the current user is root, '$' otherwise
 # Also, changes color if the last command exited with a non-zero error code
-    'root',
+    #'root',
+
+    'newlineroot',
 ]
 
 # Change the colors used to draw individual segments in your prompt

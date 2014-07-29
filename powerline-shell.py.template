@@ -59,9 +59,18 @@ class Powerline:
     def bgcolor(self, code):
         return self.color('48', code)
 
+    def lastsegment(self):
+        return self.segments[-1]
+
     def append(self, content, fg, bg, separator=None, separator_fg=None):
         self.segments.append((content, fg, bg, separator or self.separator,
             separator_fg or bg))
+
+    def appendbefore(self, content, fg, bg, separator=None, separator_fg=None):
+        last = self.segments.pop()
+        self.segments.append((content, fg, bg, separator or self.separator,
+            separator_fg or bg))
+        self.segments.append(last)
 
     def draw(self):
         return (''.join(self.draw_segment(i) for i in range(len(self.segments)))
@@ -75,7 +84,7 @@ class Powerline:
             self.fgcolor(segment[1]),
             self.bgcolor(segment[2]),
             segment[0],
-            self.bgcolor(next_segment[2]) if next_segment else self.reset,
+            self.bgcolor(next_segment[2]) if next_segment and next_segment[0] != '\n' else self.reset,
             self.fgcolor(segment[4]),
             segment[3]))
 
