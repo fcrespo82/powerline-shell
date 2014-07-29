@@ -10,7 +10,7 @@ def add_root_indicator_segment():
         fg = Color.CMD_FAILED_FG
         bg = Color.CMD_FAILED_BG
 
-    powerline.append('\n', Color.NEWLINE_FG, Color.NEWLINE_BG, '', bg)
+    powerline.append('\033[K\n\033[K', Color.NEWLINE_FG, Color.NEWLINE_BG, '', bg)
 
     powerline.append(root_indicators[powerline.args.shell], fg, bg)
 
