@@ -80,13 +80,14 @@ class Powerline:
         segment = self.segments[idx]
         next_segment = self.segments[idx + 1] if idx < len(self.segments)-1 else None
 
-        return ''.join((
-            self.fgcolor(segment[1]),
-            self.bgcolor(segment[2]),
+        text = ''.join((
+            self.fgcolor(segment[1]), # if segment[0] != '\n' else self.reset,
+            self.bgcolor(segment[2]) if segment[0] != '\n' else '',
             segment[0],
             self.bgcolor(next_segment[2]) if next_segment and next_segment[0] != '\n' else self.reset,
-            self.fgcolor(segment[4]),
+            self.fgcolor(next_segment[4]) if next_segment and segment[0] == '\n' else self.fgcolor(segment[4]),
             segment[3]))
+        return text
 
 def get_valid_cwd():
     """ We check if the current working directory is valid or not. Typically
